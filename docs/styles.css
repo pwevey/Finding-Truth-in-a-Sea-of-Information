@@ -212,17 +212,18 @@ footer a:hover {
   color: #666666;
 }
 
-/* Voice Reader Player */
+/* Audio Player */
 
 .reader-bar {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   border-radius: 12px;
-  padding: 0.65rem 1rem;
+  padding: 0.6rem 1rem;
   margin-bottom: 1.75rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  flex-wrap: wrap;
 }
 
 .reader-bar button {
@@ -263,21 +264,43 @@ footer a:hover {
   background-color: #e8ecf0;
 }
 
-.reader-stop {
+/* Progress bar */
+.reader-progress-wrap {
+  flex: 1;
+  min-width: 80px;
+}
+
+.reader-progress-bar {
+  width: 100%;
+  height: 6px;
   background-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  font-size: 0.85rem;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.reader-stop:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+.reader-progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #3498db;
+  border-radius: 3px;
+  transition: width 0.25s linear;
 }
 
-.reader-divider {
-  width: 1px;
-  height: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
+.reader-progress-bar:hover .reader-progress-fill {
+  background-color: #5dade2;
+}
+
+/* Time display */
+.reader-time {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
   flex-shrink: 0;
+  min-width: 70px;
+  text-align: center;
 }
 
 .reader-speed-label {
@@ -288,6 +311,7 @@ footer a:hover {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  flex-shrink: 0;
 }
 
 .reader-speed {
@@ -318,34 +342,4 @@ footer a:hover {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   flex-shrink: 0;
-}
-
-.reader-status {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.8rem;
-  margin-left: auto;
-  white-space: nowrap;
-}
-
-.reader-status .reader-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  margin-right: 0.35rem;
-  vertical-align: middle;
-}
-
-.reader-dot-playing {
-  background-color: #2ecc71;
-  animation: reader-pulse 1.2s ease-in-out infinite;
-}
-
-.reader-dot-paused {
-  background-color: #f39c12;
-}
-
-@keyframes reader-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
 }

@@ -1,105 +1,67 @@
-/* reader.js — Voice reader using the Web Speech API */
+/* reader.js — Audio player using pre-generated AI voice (Microsoft Neural TTS) */
 
 (function () {
   'use strict';
 
-  var synth = window.speechSynthesis;
-  if (!synth) return;
+  /* Map page filenames to audio files */
+  var AUDIO_MAP = {
+    'index.html':                   'audio/index.mp3',
+    'manifesto.html':               'audio/manifesto.mp3',
+    'ai-reflection-on-truth.html':  'audio/ai-reflection.mp3',
+    'christian-framework-ai.html':  'audio/christian-framework.mp3',
+    'about.html':                   'audio/about.mp3'
+  };
 
-  var utterance = null;
-  var playing = false;
-  var paused = false;
-  var bestVoice = null;
-  var voicesReady = false;
+  /* Also match root path (e.g. "/Finding-Truth-in-a-Sea-of-Information/") */
+  var path = window.location.pathname;
+  var page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+  var audioSrc = AUDIO_MAP[page];
+  if (!audioSrc) return;
 
-  /* ---- Voice selection ---- */
-  /*
-   * Ranked keyword fragments to match against voice names.
-   * Prefer natural/neural voices, then enhanced, then standard.
-   * Matching is partial and case-insensitive.
-   */
-  var VOICE_PRIORITY = [
-    'online (natural)',       /* Edge neural voices */
-    'google us english',      /* Chrome remote voice */
-    'google uk english',      /* Chrome remote voice */
-    '(enhanced)',             /* macOS enhanced voices */
-    '(premium)',              /* some systems label premium */
-    'natural',                /* generic neural label */
-    'zira',                   /* Windows Zira — decent quality */
-    'david',                  /* Windows David */
-    'samantha',               /* macOS */
-    'daniel',                 /* macOS */
-    'alex'                    /* macOS */
-  ];
-
-  function selectBestVoice() {
-    var voices = synth.getVoices();
-    if (!voices.length) return null;
-
-    /* Filter to English voices first */
-    var enVoices = [];
-    for (var i = 0; i < voices.length; i++) {
-      if (voices[i].lang && voices[i].lang.toLowerCase().indexOf('en') === 0) {
-        enVoices.push(voices[i]);
-      }
-    }
-    if (!enVoices.length) enVoices = voices;
-
-    /* Try priority keywords via partial match */
-    for (var p = 0; p < VOICE_PRIORITY.length; p++) {
-      var keyword = VOICE_PRIORITY[p];
-      for (var v = 0; v < enVoices.length; v++) {
-        if (enVoices[v].name.toLowerCase().indexOf(keyword) !== -1) {
-          return enVoices[v];
-        }
-      }
-    }
-
-    /* Fallback: first English voice */
-    return enVoices[0];
-  }
-
-  function loadVoices() {
-    bestVoice = selectBestVoice();
-    voicesReady = true;
-  }
-
-  loadVoices();
-  if (synth.onvoiceschanged !== undefined) {
-    synth.onvoiceschanged = loadVoices;
-  }
-  /* Chrome sometimes needs a delay */
-  setTimeout(loadVoices, 100);
-  setTimeout(loadVoices, 500);
+  /* ---- Build audio element ---- */
+  var audio = new Audio(audioSrc);
+  audio.preload = 'metadata';
 
   /* ---- Build UI ---- */
   var bar = document.createElement('div');
   bar.className = 'reader-bar';
   bar.setAttribute('role', 'region');
-  bar.setAttribute('aria-label', 'Voice reader controls');
+  bar.setAttribute('aria-label', 'Audio player');
 
-  /* Listen label with speaker icon */
+  /* Listen label */
   var listenLabel = document.createElement('span');
   listenLabel.className = 'reader-label';
   listenLabel.textContent = '\uD83D\uDD0A Listen';
 
-  var btnPlay = makeBtn('\u25B6', 'reader-play', 'Play', handlePlay);
-  var btnPause = makeBtn('\u23F8', 'reader-pause', 'Pause', handlePause);
-  var btnStop = makeBtn('\u23F9', 'reader-stop', 'Stop', handleStop);
+  var btnPlay = makeBtn('\u25B6', 'reader-play', 'Play');
+  var btnPause = makeBtn('\u23F8', 'reader-pause', 'Pause');
 
-  var divider = document.createElement('span');
-  divider.className = 'reader-divider';
+  /* Progress bar */
+  var progressWrap = document.createElement('div');
+  progressWrap.className = 'reader-progress-wrap';
+  var progressBar = document.createElement('div');
+  progressBar.className = 'reader-progress-bar';
+  var progressFill = document.createElement('div');
+  progressFill.className = 'reader-progress-fill';
+  progressBar.appendChild(progressFill);
+  progressWrap.appendChild(progressBar);
 
+  /* Time display */
+  var timeDisplay = document.createElement('span');
+  timeDisplay.className = 'reader-time';
+  timeDisplay.textContent = '0:00 / 0:00';
+
+  /* Speed control */
   var speedLabel = document.createElement('label');
   speedLabel.className = 'reader-speed-label';
   speedLabel.textContent = 'Speed ';
   var speedSelect = document.createElement('select');
   speedSelect.className = 'reader-speed';
-  speedSelect.setAttribute('aria-label', 'Reading speed');
+  speedSelect.setAttribute('aria-label', 'Playback speed');
   [
-    { value: '0.8',  text: '0.8\u00D7' },
+    { value: '0.75', text: '0.75\u00D7' },
     { value: '1',    text: '1\u00D7' },
-    { value: '1.2',  text: '1.2\u00D7' },
+    { value: '1.25', text: '1.25\u00D7' },
     { value: '1.5',  text: '1.5\u00D7' },
     { value: '2',    text: '2\u00D7' }
   ].forEach(function (opt) {
@@ -111,152 +73,90 @@
   });
   speedLabel.appendChild(speedSelect);
 
-  var status = document.createElement('span');
-  status.className = 'reader-status';
-  status.textContent = '';
-
   btnPause.style.display = 'none';
-  btnStop.style.display = 'none';
 
   bar.appendChild(listenLabel);
   bar.appendChild(btnPlay);
   bar.appendChild(btnPause);
-  bar.appendChild(btnStop);
-  bar.appendChild(divider);
+  bar.appendChild(progressWrap);
+  bar.appendChild(timeDisplay);
   bar.appendChild(speedLabel);
-  bar.appendChild(status);
 
-  /* Insert after nav (before main) */
+  /* Insert before main */
   var mainEl = document.querySelector('main');
   if (mainEl) {
     mainEl.parentNode.insertBefore(bar, mainEl);
   }
 
   /* ---- Helpers ---- */
-  function makeBtn(symbol, cls, ariaLabel, handler) {
+  function makeBtn(symbol, cls, ariaLabel) {
     var b = document.createElement('button');
     b.type = 'button';
     b.className = cls;
     b.textContent = symbol;
     b.setAttribute('aria-label', ariaLabel);
     b.setAttribute('title', ariaLabel);
-    b.addEventListener('click', handler);
     return b;
   }
 
-  function getReadableText() {
-    var el = document.querySelector('main');
-    if (!el) return '';
-    var clone = el.cloneNode(true);
-    var skip = clone.querySelectorAll('script, style, .reader-bar');
-    for (var i = 0; i < skip.length; i++) {
-      skip[i].parentNode.removeChild(skip[i]);
-    }
-    return clone.textContent.replace(/\s+/g, ' ').trim();
+  function formatTime(sec) {
+    if (isNaN(sec)) return '0:00';
+    var m = Math.floor(sec / 60);
+    var s = Math.floor(sec % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
   }
 
-  /* ---- Handlers ---- */
-  function handlePlay() {
-    /* Re-check voices if not loaded yet */
-    if (!bestVoice) loadVoices();
+  /* ---- Event handlers ---- */
+  btnPlay.addEventListener('click', function () {
+    audio.play();
+  });
 
-    if (paused && utterance) {
-      synth.resume();
-      paused = false;
-      playing = true;
-      updateUI();
-      return;
-    }
+  btnPause.addEventListener('click', function () {
+    audio.pause();
+  });
 
-    synth.cancel();
+  audio.addEventListener('play', function () {
+    btnPlay.style.display = 'none';
+    btnPause.style.display = '';
+  });
 
-    var text = getReadableText();
-    if (!text) return;
+  audio.addEventListener('pause', function () {
+    btnPlay.style.display = '';
+    btnPlay.textContent = audio.currentTime > 0 ? '\u25B6' : '\u25B6';
+    btnPlay.setAttribute('aria-label', audio.currentTime > 0 ? 'Resume' : 'Play');
+    btnPause.style.display = 'none';
+  });
 
-    utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = parseFloat(speedSelect.value);
-    utterance.pitch = 1;
-    utterance.lang = 'en-US';
+  audio.addEventListener('ended', function () {
+    btnPlay.style.display = '';
+    btnPlay.setAttribute('aria-label', 'Play');
+    btnPause.style.display = 'none';
+    progressFill.style.width = '0%';
+  });
 
-    if (bestVoice) {
-      utterance.voice = bestVoice;
-    }
-
-    utterance.onend = function () {
-      playing = false;
-      paused = false;
-      utterance = null;
-      updateUI();
-    };
-
-    utterance.onerror = function () {
-      playing = false;
-      paused = false;
-      utterance = null;
-      updateUI();
-    };
-
-    synth.speak(utterance);
-    playing = true;
-    paused = false;
-    updateUI();
-  }
-
-  function handlePause() {
-    if (playing && !paused) {
-      synth.pause();
-      paused = true;
-      playing = false;
-      updateUI();
-    }
-  }
-
-  function handleStop() {
-    synth.cancel();
-    playing = false;
-    paused = false;
-    utterance = null;
-    updateUI();
-  }
-
-  function updateUI() {
-    if (playing) {
-      btnPlay.style.display = 'none';
-      btnPause.style.display = '';
-      btnStop.style.display = '';
-      status.innerHTML = '<span class="reader-dot reader-dot-playing"></span>Reading';
-    } else if (paused) {
-      btnPlay.style.display = '';
-      btnPlay.textContent = '\u25B6';
-      btnPlay.setAttribute('aria-label', 'Resume');
-      btnPlay.setAttribute('title', 'Resume');
-      btnPause.style.display = 'none';
-      btnStop.style.display = '';
-      status.innerHTML = '<span class="reader-dot reader-dot-paused"></span>Paused';
-    } else {
-      btnPlay.style.display = '';
-      btnPlay.textContent = '\u25B6';
-      btnPlay.setAttribute('aria-label', 'Play');
-      btnPlay.setAttribute('title', 'Play');
-      btnPause.style.display = 'none';
-      btnStop.style.display = 'none';
-      status.textContent = '';
-    }
-  }
-
-  /* Speed change while playing */
-  speedSelect.addEventListener('change', function () {
-    if (playing || paused) {
-      synth.cancel();
-      playing = false;
-      paused = false;
-      handlePlay();
+  audio.addEventListener('timeupdate', function () {
+    if (audio.duration) {
+      var pct = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = pct + '%';
+      timeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
     }
   });
 
-  /* Cleanup on page unload */
-  window.addEventListener('beforeunload', function () {
-    synth.cancel();
+  audio.addEventListener('loadedmetadata', function () {
+    timeDisplay.textContent = '0:00 / ' + formatTime(audio.duration);
+  });
+
+  /* Click-to-seek on progress bar */
+  progressBar.addEventListener('click', function (e) {
+    if (!audio.duration) return;
+    var rect = progressBar.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+
+  /* Speed change */
+  speedSelect.addEventListener('change', function () {
+    audio.playbackRate = parseFloat(speedSelect.value);
   });
 
 })();
