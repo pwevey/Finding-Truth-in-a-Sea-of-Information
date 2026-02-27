@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary &mdash; Truth &amp; Artificial Intelligence</title>
+  <meta name="description" content="Glossary of key terms used in Truth & Artificial Intelligence: LLM, neural network, next-token prediction, epistemology, and more.">
+  <meta property="og:title" content="Glossary — Truth & Artificial Intelligence">
+  <meta property="og:description" content="Definitions of key technical and theological terms used throughout the Truth & Artificial Intelligence project.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://truthandai.org/glossary.html">
+  <meta property="og:site_name" content="Truth &amp; Artificial Intelligence">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Glossary — Truth & Artificial Intelligence">
+  <meta name="twitter:description" content="Definitions of key technical and theological terms used throughout the Truth & Artificial Intelligence project.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:image" content="https://truthandai.org/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://truthandai.org/images/og-default.png">
+  <link rel="canonical" href="https://truthandai.org/glossary.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="Truth &amp; Artificial Intelligence RSS Feed" href="https://truthandai.org/feed.xml">
+  <script src="theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "name": "Glossary — Truth & Artificial Intelligence",
+    "url": "https://truthandai.org/glossary.html",
+    "description": "Glossary of key technical and theological terms used in the Truth & Artificial Intelligence project."
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="container">
+
+    <header>
+      <h1>Glossary</h1>
+      <p>Truth &amp; Artificial Intelligence</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="manifesto.html">Manifesto</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="glossary.html" class="active">Glossary</a></li>
+        <li><a href="https://github.com/pwevey/Finding-Truth-in-a-Sea-of-Information">Repository</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-content">
+
+      <p>
+        This glossary defines key technical and theological terms used throughout
+        this project. Terms are grouped by category for clarity.
+      </p>
+
+      <h2>Artificial Intelligence &amp; Machine Learning</h2>
+
+      <dl class="glossary">
+        <dt id="artificial-intelligence">Artificial Intelligence (AI)</dt>
+        <dd>A broad field of computer science focused on building systems that can perform tasks typically requiring human intelligence, such as language understanding, image recognition, and decision-making. In this project, AI is treated strictly as a tool — not a being.</dd>
+
+        <dt id="large-language-model">Large Language Model (LLM)</dt>
+        <dd>A type of AI system trained on massive amounts of text data to generate and process human language. LLMs predict the next word (token) in a sequence based on statistical patterns. They do not understand meaning, hold beliefs, or seek truth. Examples include GPT, Claude, and Gemini.</dd>
+
+        <dt id="neural-network">Neural Network</dt>
+        <dd>A computational architecture loosely inspired by biological neurons. It consists of layers of interconnected nodes (parameters) that process input data through weighted mathematical operations. Neural networks learn patterns from training data by adjusting these weights.</dd>
+
+        <dt id="transformer">Transformer</dt>
+        <dd>The specific neural network architecture used by modern LLMs. Introduced in 2017, transformers use an "attention mechanism" that allows the model to weigh the relevance of different parts of the input when generating output. This is the architecture behind GPT, Claude, and most current language models.</dd>
+
+        <dt id="next-token-prediction">Next-Token Prediction</dt>
+        <dd>The core mechanism of how LLMs generate text. Given a sequence of tokens (words or word fragments), the model calculates a probability distribution over all possible next tokens and selects one. This process repeats one token at a time to produce complete sentences, paragraphs, and documents. It is a statistical operation, not a form of reasoning.</dd>
+
+        <dt id="token">Token</dt>
+        <dd>The basic unit of text that a language model processes. A token can be a whole word, a part of a word, or a punctuation mark. For example, the word "understanding" might be split into two tokens: "understand" and "ing." LLMs process and generate text one token at a time.</dd>
+
+        <dt id="training-data">Training Data</dt>
+        <dd>The large collection of text used to train a language model. This includes books, articles, websites, and other written material. The model learns statistical patterns from this data. It does not verify the accuracy of the material — it learns how language is used, not what is true.</dd>
+
+        <dt id="attention-mechanism">Attention Mechanism</dt>
+        <dd>A mathematical technique used in transformer models that allows the system to determine which parts of the input are most relevant when predicting the next token. It enables the model to handle long-range dependencies in text (e.g., connecting a pronoun to a noun mentioned several sentences earlier). It is a mathematical operation, not a form of comprehension.</dd>
+
+        <dt id="parameters">Parameters</dt>
+        <dd>The numerical values (weights) within a neural network that are adjusted during training. Modern LLMs have billions or trillions of parameters. These numbers encode statistical relationships between tokens — they do not represent knowledge, beliefs, or understanding.</dd>
+
+        <dt id="hallucination">Hallucination</dt>
+        <dd>When a language model generates text that is factually incorrect, fabricated, or nonsensical — but presents it with the same fluency and confidence as accurate information. This occurs because the model optimizes for statistical plausibility, not truth. The model has no mechanism for distinguishing fact from fiction.</dd>
+
+        <dt id="prompt">Prompt</dt>
+        <dd>The input text given to a language model to generate a response. The prompt provides context that influences the model's statistical predictions. The quality and specificity of the prompt affects the output, but the model is always performing the same operation: predicting statistically likely next tokens.</dd>
+
+        <dt id="fine-tuning">Fine-Tuning</dt>
+        <dd>The process of further training a pre-trained model on a specific, narrower dataset to improve its performance on particular tasks. Fine-tuning adjusts the model's parameters but does not give the model understanding or judgment.</dd>
+
+        <dt id="stochastic">Stochastic</dt>
+        <dd>Involving randomness or probability. LLMs are stochastic systems — they involve controlled randomness in token selection (governed by a "temperature" setting). This is why the same prompt can produce different outputs each time. The randomness is mathematical, not creative.</dd>
+
+        <dt id="mimic-machine">Mimic Machine (MM)</dt>
+        <dd>A term used in this project's <a href="manifesto.html">manifesto</a> to describe LLMs. It emphasizes that these systems generate language through learned pattern mimicry — they reproduce patterns from training data rather than engaging in original thought or understanding.</dd>
+      </dl>
+
+      <h2>Philosophy &amp; Epistemology</h2>
+
+      <dl class="glossary">
+        <dt id="epistemology">Epistemology</dt>
+        <dd>The branch of philosophy concerned with the nature, origin, and limits of knowledge. Key questions include: What is knowledge? How is knowledge acquired? What makes a belief justified? Understanding epistemology is important for evaluating AI claims because it clarifies what it means to "know" something — a capacity LLMs do not possess.</dd>
+
+        <dt id="correspondence-theory">Correspondence Theory of Truth</dt>
+        <dd>The philosophical position that a statement is true if it corresponds to an actual state of affairs in the world. A claim is true when it accurately describes reality. This is the most intuitive theory of truth and aligns closely with the Christian understanding that truth reflects the way things actually are under God's creation.</dd>
+
+        <dt id="coherence-theory">Coherence Theory of Truth</dt>
+        <dd>The philosophical position that a statement is true if it is internally consistent with a larger system of beliefs or propositions. Truth, in this view, is a property of systems rather than individual claims.</dd>
+
+        <dt id="pragmatic-theory">Pragmatic Theory of Truth</dt>
+        <dd>The philosophical position that a statement is true if it proves useful, workable, or productive in practice. Truth is evaluated by its consequences rather than by correspondence to reality.</dd>
+
+        <dt id="ground-truth">Ground Truth</dt>
+        <dd>The actual, verified state of affairs in reality — the facts as they truly are, independent of any model, prediction, or opinion. In data science, ground truth refers to verified data used to evaluate a model's accuracy. LLMs do not seek or verify ground truth; they predict statistically probable language.</dd>
+
+        <dt id="moral-agency">Moral Agency</dt>
+        <dd>The capacity of a being to make moral judgments, bear responsibility for actions, and be held accountable. Moral agency requires consciousness, intention, and conscience. Human beings possess moral agency. Machines do not. AI systems cannot sin, repent, forgive, or act with moral intent.</dd>
+
+        <dt id="consciousness">Consciousness</dt>
+        <dd>Subjective awareness — the experience of perceiving, thinking, and feeling from a first-person perspective. Consciousness is a property of beings, not systems. LLMs process data and generate output without any form of subjective experience. They are not conscious.</dd>
+      </dl>
+
+      <h2>Christian Theology</h2>
+
+      <dl class="glossary">
+        <dt id="imago-dei">Imago Dei (Image of God)</dt>
+        <dd>The Christian doctrine that human beings are created in the image and likeness of God (Genesis 1:27). This means humans reflect God's nature in ways that include rationality, moral agency, creativity, relational capacity, and spiritual awareness. AI does not bear the image of God. It is a tool created by image-bearers.</dd>
+
+        <dt id="general-revelation">General Revelation</dt>
+        <dd>God's self-disclosure through creation, conscience, and the natural order — accessible to all people (Romans 1:19-20). General revelation reveals God's existence and attributes. It is distinct from special revelation (Scripture) and from any output produced by a machine.</dd>
+
+        <dt id="special-revelation">Special Revelation</dt>
+        <dd>God's self-disclosure through Scripture and ultimately through Jesus Christ. Special revelation provides specific knowledge about God's character, will, and plan of salvation that cannot be discovered through nature or reason alone. It is the authoritative source of truth for the Christian faith.</dd>
+
+        <dt id="discernment">Discernment</dt>
+        <dd>The God-given capacity to distinguish truth from falsehood, wisdom from folly, and right from wrong. Biblical discernment is grounded in Scripture, guided by the Holy Spirit, and exercised by human beings. It cannot be delegated to a machine. AI output must always be evaluated through discernment.</dd>
+
+        <dt id="sovereignty">Sovereignty of God</dt>
+        <dd>The Christian doctrine that God is the supreme authority over all creation. God governs, sustains, and directs all things according to His will and purpose. No technology — however sophisticated — operates outside of God's sovereign rule. Technology is part of creation; God is the Creator.</dd>
+
+        <dt id="sola-scriptura">Sola Scriptura</dt>
+        <dd>The Protestant principle that Scripture alone is the ultimate authority for faith and practice. While other sources of knowledge (including AI) may be informative, they are never authoritative in the way Scripture is. AI-generated text about theology must always be measured against the Bible.</dd>
+      </dl>
+
+      <h2>Project-Specific Terms</h2>
+
+      <dl class="glossary">
+        <dt id="human-authored">Human-Authored</dt>
+        <dd>A label used on this site to identify documents written by a human being. Human-authored documents represent personal conviction, theological reflection, and reasoned analysis by a conscious, morally accountable person.</dd>
+
+        <dt id="ai-generated">AI-Generated</dt>
+        <dd>A label used on this site to identify documents produced by a Large Language Model. AI-generated documents are included as demonstrations of what language models produce. They are exhibits — not authorities. Each carries a full disclosure notice.</dd>
+
+        <dt id="disclosure-header">Disclosure Header</dt>
+        <dd>A notice placed at the top of every AI-generated document on this site. It identifies the model used, the date of generation, and a statement that the content is statistical output — not independent reasoning, theological authority, or conscious understanding.</dd>
+      </dl>
+
+    </main>
+
+    <footer>
+      <p>Truth &amp; Artificial Intelligence &mdash; A Christ-Centered Exploration of Technology</p>
+      <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+  </div>
+  <script src="reader.js"></script>
+</body>
+</html>

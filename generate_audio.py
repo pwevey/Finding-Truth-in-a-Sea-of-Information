@@ -19,6 +19,7 @@ PAGES = {
     "docs/ai-reflection-on-truth.html":  "docs/audio/ai-reflection.mp3",
     "docs/christian-framework-ai.html":  "docs/audio/christian-framework.mp3",
     "docs/about.html":                   "docs/audio/about.mp3",
+    "docs/glossary.html":               "docs/audio/glossary.mp3",
 }
 
 

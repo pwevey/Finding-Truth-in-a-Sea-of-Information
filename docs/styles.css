@@ -626,6 +626,63 @@ footer a:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* ===== Glossary Definition List ===== */
+
+.glossary {
+  margin-bottom: 2rem;
+}
+
+.glossary dt {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+  scroll-margin-top: 1rem;
+}
+
+.glossary dt:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.glossary dd {
+  margin-left: 0;
+  margin-top: 0.3rem;
+  padding-left: 1rem;
+  border-left: 2px solid #e0e0e0;
+  color: #555;
+  line-height: 1.65;
+}
+
+.glossary dd a {
+  color: #2c6fad;
+}
+
+.glossary dd a:hover {
+  color: #3498db;
+}
+
+[data-theme="dark"] .glossary dt {
+  color: #e0e0e0;
+  border-top-color: #2a2a4a;
+}
+
+[data-theme="dark"] .glossary dd {
+  border-left-color: #333355;
+  color: #b0b0b0;
+}
+
+[data-theme="dark"] .glossary dd a {
+  color: #6da3d9;
+}
+
+[data-theme="dark"] .glossary dd a:hover {
+  color: #8fbde8;
+}
+
 /* ===== Heading Anchor Links ===== */
 
 main h2,

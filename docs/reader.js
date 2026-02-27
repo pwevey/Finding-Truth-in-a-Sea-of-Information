@@ -9,7 +9,8 @@
     'manifesto.html':               'audio/manifesto.mp3',
     'ai-reflection-on-truth.html':  'audio/ai-reflection.mp3',
     'christian-framework-ai.html':  'audio/christian-framework.mp3',
-    'about.html':                   'audio/about.mp3'
+    'about.html':                   'audio/about.mp3',
+    'glossary.html':                'audio/glossary.mp3'
   };
 
   /* Also match root path (e.g. "/Finding-Truth-in-a-Sea-of-Information/") */
