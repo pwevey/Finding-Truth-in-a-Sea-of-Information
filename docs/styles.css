@@ -211,3 +211,67 @@ footer a {
 footer a:hover {
   color: #666666;
 }
+
+/* Voice Reader Bar */
+
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  background-color: #f5f7fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.reader-bar button {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #4a6fa5;
+  border: none;
+  border-radius: 3px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.reader-bar button:hover {
+  background-color: #3b5d8c;
+}
+
+.reader-stop {
+  background-color: #888888 !important;
+}
+
+.reader-stop:hover {
+  background-color: #666666 !important;
+}
+
+.reader-speed-label {
+  color: #666666;
+  font-size: 0.8rem;
+  margin-left: 0.25rem;
+}
+
+.reader-speed {
+  font-family: inherit;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.3rem;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #333333;
+  margin-left: 0.15rem;
+}
+
+.reader-status {
+  color: #666666;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-left: auto;
+}
