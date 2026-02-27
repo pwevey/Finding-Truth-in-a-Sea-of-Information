@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://truthandai.org/sitemap.xml
+RSS Feed: https://truthandai.org/feed.xml
