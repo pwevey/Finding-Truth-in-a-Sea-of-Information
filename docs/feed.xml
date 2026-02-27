@@ -9,7 +9,7 @@
     <language>en-us</language>
     <managingEditor>paul@truthandai.org (Paul Wever)</managingEditor>
     <webMaster>paul@truthandai.org (Paul Wever)</webMaster>
-    <lastBuildDate>Fri, 27 Feb 2026 20:06:16 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 21:31:43 +0000</lastBuildDate>
     <atom:link href="https://truthandai.org/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://truthandai.org/images/og-default.png</url>
@@ -26,6 +26,15 @@
       <description>A Christian Manifesto on Artificial Intelligence by Paul Wever. Foundational declarations on LLMs, truth, and the order of creation.</description>
       <category>Human-Authored</category>
       <category>Manifesto</category>
+    </item>
+
+    <item>
+      <title>Accuracy Is Not Truth</title>
+      <link>https://truthandai.org/accuracy-is-not-truth.html</link>
+      <guid isPermaLink="true">https://truthandai.org/accuracy-is-not-truth.html</guid>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      <description>An AI-generated exploration of why AI accuracy does not equate to truth, examining truth-bias, hallucinations, deepfakes, and the need for human oversight in the age of generative AI.</description>
+      <category>AI-Generated</category>
     </item>
 
     <item>
@@ -46,16 +55,6 @@
       <description>An AI-generated summary of a Christian framework for understanding AI: AI as a tool, truth grounded in God, and responsible use of technology.</description>
       <category>AI-Generated</category>
       <category>Theology</category>
-    </item>
-
-    <item>
-      <title>Accuracy Is Not Truth: AI in a Post-Epistemic World</title>
-      <link>https://truthandai.org/accuracy-is-not-truth.html</link>
-      <guid isPermaLink="true">https://truthandai.org/accuracy-is-not-truth.html</guid>
-      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
-      <description>An AI-generated exploration of why AI accuracy does not equate to truth, examining truth-bias, hallucinations, deepfakes, and the need for human oversight in the age of generative AI.</description>
-      <category>AI-Generated</category>
-      <category>Epistemology</category>
     </item>
 
   </channel>
