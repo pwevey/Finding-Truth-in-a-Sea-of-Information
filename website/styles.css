@@ -1,0 +1,198 @@
+/* Truth & Artificial Intelligence — Stylesheet */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Header */
+
+header {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 0.25rem;
+}
+
+header p {
+  font-size: 0.95rem;
+  color: #666666;
+}
+
+/* Navigation */
+
+nav {
+  margin-bottom: 2rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #4a6fa5;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.active {
+  font-weight: 600;
+  color: #333333;
+}
+
+/* Main Content */
+
+main h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #222222;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+main h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444444;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+main p {
+  margin-bottom: 1rem;
+}
+
+main ul,
+main ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+main li {
+  margin-bottom: 0.35rem;
+}
+
+main a {
+  color: #4a6fa5;
+  text-decoration: none;
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
+/* Document List */
+
+.document-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.document-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.document-list li:last-child {
+  border-bottom: none;
+}
+
+.document-list a {
+  font-weight: 500;
+}
+
+.document-list .label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.label-human {
+  background-color: #e8f0e8;
+  color: #3a6b3a;
+}
+
+.label-ai {
+  background-color: #f0e8e8;
+  color: #6b3a3a;
+}
+
+/* Blockquote */
+
+blockquote {
+  border-left: 3px solid #cccccc;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  color: #555555;
+  font-style: italic;
+}
+
+/* Notice Box */
+
+.notice {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+/* Footer */
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.85rem;
+  color: #999999;
+}
+
+footer a {
+  color: #999999;
+}
+
+footer a:hover {
+  color: #666666;
+}
