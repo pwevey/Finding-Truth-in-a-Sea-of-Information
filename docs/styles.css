@@ -626,6 +626,430 @@ footer a:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* ===== Podcast Player Page ===== */
+
+.player-intro {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.podcast-player {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+.now-playing {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.now-playing-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(52, 152, 219, 0.3);
+  color: #5dade2;
+  padding: 0.2rem 0.65rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+}
+
+.now-playing-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.now-playing-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Player Controls */
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  color: #2c3e50;
+  background: #fff;
+}
+
+.pc-btn:active {
+  transform: scale(0.92);
+}
+
+.pc-prev,
+.pc-next {
+  width: 36px;
+  height: 36px;
+}
+
+.pc-prev:hover,
+.pc-next:hover {
+  background: #e8ecf0;
+}
+
+.pc-play,
+.pc-pause {
+  width: 52px;
+  height: 52px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pc-play:hover,
+.pc-pause:hover {
+  background: #e8ecf0;
+}
+
+/* Progress */
+
+.player-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.player-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #3498db;
+  border-radius: 3px;
+  transition: width 0.25s linear;
+}
+
+.player-bar:hover .player-bar-fill {
+  background: #5dade2;
+}
+
+.player-time {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-variant-numeric: tabular-nums;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* Speed */
+
+.player-options {
+  display: flex;
+  justify-content: center;
+}
+
+.player-speed-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.player-speed-select {
+  font-family: inherit;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.player-speed-select:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 1px;
+}
+
+.player-speed-select option {
+  background: #2c3e50;
+  color: #fff;
+}
+
+/* Track List */
+
+.track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: background-color 0.15s ease;
+  width: 100%;
+}
+
+.track:hover {
+  background: #f0f4f8;
+}
+
+.track-active {
+  background: #eef4fb;
+}
+
+.track-active:hover {
+  background: #e4edf7;
+}
+
+.track-num {
+  width: 22px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999;
+  flex-shrink: 0;
+}
+
+/* Show number by default, play icon on hover, eq icon when active+playing */
+.track-icon-play,
+.track-icon-eq {
+  display: none;
+}
+
+.track:hover .track-num {
+  display: none;
+}
+
+.track:hover .track-icon-play {
+  display: block;
+  color: #2c3e50;
+}
+
+.track-active .track-num {
+  display: none;
+}
+
+.track-active .track-icon-eq {
+  display: block;
+  color: #3498db;
+}
+
+.track-active:hover .track-icon-eq {
+  display: none;
+}
+
+.track-active:hover .track-icon-play {
+  display: block;
+  color: #2c3e50;
+}
+
+.track-icon-play,
+.track-icon-eq {
+  width: 22px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.track-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.track-title {
+  display: block;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-active .track-title {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.track-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.1rem;
+}
+
+.track-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #999;
+  flex-shrink: 0;
+  transition: color 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+}
+
+.track-link:hover {
+  color: #4a6fa5;
+  background: rgba(74, 111, 165, 0.1);
+}
+
+.track-duration {
+  font-size: 0.78rem;
+  color: #999;
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ===== Podcast Player — Dark Mode ===== */
+
+[data-theme="dark"] .player-intro {
+  color: #999;
+}
+
+[data-theme="dark"] .podcast-player {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .track-list {
+  background: #1a1a2e;
+  border-color: #2a2a4a;
+}
+
+[data-theme="dark"] .track {
+  background: #141428;
+}
+
+[data-theme="dark"] .track:hover {
+  background: #1e1e38;
+}
+
+[data-theme="dark"] .track-active {
+  background: #1a2840;
+}
+
+[data-theme="dark"] .track-active:hover {
+  background: #1e3050;
+}
+
+[data-theme="dark"] .track-num {
+  color: #666;
+}
+
+[data-theme="dark"] .track:hover .track-icon-play {
+  color: #ddd;
+}
+
+[data-theme="dark"] .track-active .track-icon-eq {
+  color: #5dade2;
+}
+
+[data-theme="dark"] .track-title {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .track-active .track-title {
+  color: #5dade2;
+}
+
+[data-theme="dark"] .track-sub {
+  color: #777;
+}
+
+[data-theme="dark"] .track-link {
+  color: #666;
+}
+
+[data-theme="dark"] .track-link:hover {
+  color: #6da3d9;
+  background: rgba(109, 163, 217, 0.1);
+}
+
+[data-theme="dark"] .track-duration {
+  color: #666;
+}
+
+/* ===== Podcast Player — Mobile ===== */
+
+@media (max-width: 600px) {
+  .podcast-player {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .now-playing-title {
+    font-size: 1.05rem;
+  }
+
+  .pc-play,
+  .pc-pause {
+    width: 44px;
+    height: 44px;
+  }
+
+  .pc-prev,
+  .pc-next {
+    width: 32px;
+    height: 32px;
+  }
+
+  .track {
+    padding: 0.7rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .track-sub {
+    display: none;
+  }
+
+  .track-link {
+    width: 26px;
+    height: 26px;
+  }
+}
+
 /* ===== Glossary Definition List ===== */
 
 .glossary {
@@ -796,6 +1220,8 @@ main h3:hover .heading-anchor,
   .skip-link,
   nav,
   .reader-bar,
+  .podcast-player,
+  .track-list,
   .theme-switch,
   .heading-anchor,
   .toc,

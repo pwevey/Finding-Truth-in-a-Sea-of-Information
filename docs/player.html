@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listen — Truth &amp; Artificial Intelligence</title>
+  <meta name="description" content="Listen to all Truth & Artificial Intelligence articles as audio narrations. A podcast-style player for Christian theological and technical reflections on AI.">
+  <meta property="og:title" content="Listen — Truth & Artificial Intelligence">
+  <meta property="og:description" content="Listen to all Truth & Artificial Intelligence articles as audio narrations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://truthandai.org/player.html">
+  <meta property="og:site_name" content="Truth &amp; Artificial Intelligence">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Listen — Truth & Artificial Intelligence">
+  <meta name="twitter:description" content="Listen to all Truth & Artificial Intelligence articles as audio narrations.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:image" content="https://truthandai.org/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://truthandai.org/images/og-default.png">
+  <link rel="canonical" href="https://truthandai.org/player.html">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="Truth &amp; Artificial Intelligence RSS Feed" href="https://truthandai.org/feed.xml">
+  <script src="theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Listen — Truth & Artificial Intelligence",
+    "url": "https://truthandai.org/player.html",
+    "description": "Listen to all Truth & Artificial Intelligence articles as audio narrations.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Truth & Artificial Intelligence",
+      "url": "https://truthandai.org/"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="container">
+
+    <header>
+      <h1>Truth &amp; Artificial Intelligence</h1>
+      <p>Christian Theological and Technical Reflections on AI</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="manifesto.html">Manifesto</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="glossary.html">Glossary</a></li>
+        <li><a href="player.html" class="active">Listen</a></li>
+        <li><a href="https://github.com/pwevey/Finding-Truth-in-a-Sea-of-Information" target="_blank" rel="noopener noreferrer">Repository</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-content">
+
+      <h2>Listen to All Articles</h2>
+      <p class="player-intro">All articles narrated using Microsoft Neural TTS. Select a track below to listen, or press play to start from the beginning.</p>
+
+      <!-- Now Playing -->
+      <div class="podcast-player" role="region" aria-label="Audio player">
+
+        <div class="now-playing">
+          <div class="now-playing-badge">Now Playing</div>
+          <div class="now-playing-title" id="np-title">Select a track to begin</div>
+          <div class="now-playing-desc" id="np-desc"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="player-controls">
+          <button class="pc-btn pc-prev" id="btn-prev" aria-label="Previous track" title="Previous">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+          </button>
+          <button class="pc-btn pc-play" id="btn-play" aria-label="Play" title="Play">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button class="pc-btn pc-pause" id="btn-pause" aria-label="Pause" title="Pause" style="display:none">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
+          </button>
+          <button class="pc-btn pc-next" id="btn-next" aria-label="Next track" title="Next">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6z"/></svg>
+          </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="player-progress">
+          <span class="player-time" id="time-current">0:00</span>
+          <div class="player-bar" id="progress-bar">
+            <div class="player-bar-fill" id="progress-fill"></div>
+          </div>
+          <span class="player-time" id="time-total">0:00</span>
+        </div>
+
+        <!-- Speed -->
+        <div class="player-options">
+          <label class="player-speed-label">
+            Speed
+            <select class="player-speed-select" id="speed-select">
+              <option value="0.75">0.75x</option>
+              <option value="1" selected>1x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+              <option value="1.75">1.75x</option>
+              <option value="2">2x</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Track List -->
+      <div class="track-list" role="list" aria-label="Track list">
+
+        <button class="track" role="listitem" data-src="audio/index.mp3" data-index="0">
+          <span class="track-num">1</span>
+          <span class="track-icon track-icon-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="track-icon track-icon-eq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14" width="3" height="6" rx="1"><animate attributeName="height" values="6;12;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;8;14" dur="0.8s" repeatCount="indefinite"/></rect><rect x="10.5" y="10" width="3" height="10" rx="1"><animate attributeName="height" values="10;4;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;16;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="17" y="12" width="3" height="8" rx="1"><animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;6;12" dur="0.8s" begin="0.4s" repeatCount="indefinite"/></rect></svg>
+          </span>
+          <div class="track-info">
+            <span class="track-title">Introduction</span>
+            <span class="track-sub">Project overview and purpose</span>
+          </div>
+          <a href="index.html" class="track-link" title="Read article" aria-label="Read Introduction article">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <span class="track-duration" data-src="audio/index.mp3"></span>
+        </button>
+
+        <button class="track" role="listitem" data-src="audio/manifesto.mp3" data-index="1">
+          <span class="track-num">2</span>
+          <span class="track-icon track-icon-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="track-icon track-icon-eq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14" width="3" height="6" rx="1"><animate attributeName="height" values="6;12;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;8;14" dur="0.8s" repeatCount="indefinite"/></rect><rect x="10.5" y="10" width="3" height="10" rx="1"><animate attributeName="height" values="10;4;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;16;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="17" y="12" width="3" height="8" rx="1"><animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;6;12" dur="0.8s" begin="0.4s" repeatCount="indefinite"/></rect></svg>
+          </span>
+          <div class="track-info">
+            <span class="track-title">Manifesto</span>
+            <span class="track-sub">Finding Truth in a Sea of Information — by Paul Wever</span>
+          </div>
+          <a href="manifesto.html" class="track-link" title="Read article" aria-label="Read Manifesto article">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <span class="track-duration" data-src="audio/manifesto.mp3"></span>
+        </button>
+
+        <button class="track" role="listitem" data-src="audio/ai-reflection.mp3" data-index="2">
+          <span class="track-num">3</span>
+          <span class="track-icon track-icon-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="track-icon track-icon-eq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14" width="3" height="6" rx="1"><animate attributeName="height" values="6;12;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;8;14" dur="0.8s" repeatCount="indefinite"/></rect><rect x="10.5" y="10" width="3" height="10" rx="1"><animate attributeName="height" values="10;4;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;16;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="17" y="12" width="3" height="8" rx="1"><animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;6;12" dur="0.8s" begin="0.4s" repeatCount="indefinite"/></rect></svg>
+          </span>
+          <div class="track-info">
+            <span class="track-title">AI Reflection on Truth</span>
+            <span class="track-sub">An AI-generated exploration of truth, knowledge, and epistemology</span>
+          </div>
+          <a href="ai-reflection-on-truth.html" class="track-link" title="Read article" aria-label="Read AI Reflection on Truth article">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <span class="track-duration" data-src="audio/ai-reflection.mp3"></span>
+        </button>
+
+        <button class="track" role="listitem" data-src="audio/christian-framework.mp3" data-index="3">
+          <span class="track-num">4</span>
+          <span class="track-icon track-icon-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="track-icon track-icon-eq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14" width="3" height="6" rx="1"><animate attributeName="height" values="6;12;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;8;14" dur="0.8s" repeatCount="indefinite"/></rect><rect x="10.5" y="10" width="3" height="10" rx="1"><animate attributeName="height" values="10;4;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;16;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="17" y="12" width="3" height="8" rx="1"><animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;6;12" dur="0.8s" begin="0.4s" repeatCount="indefinite"/></rect></svg>
+          </span>
+          <div class="track-info">
+            <span class="track-title">Christian Framework for AI</span>
+            <span class="track-sub">A Christian theological lens on artificial intelligence</span>
+          </div>
+          <a href="christian-framework-ai.html" class="track-link" title="Read article" aria-label="Read Christian Framework for AI article">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <span class="track-duration" data-src="audio/christian-framework.mp3"></span>
+        </button>
+
+        <button class="track" role="listitem" data-src="audio/about.mp3" data-index="4">
+          <span class="track-num">5</span>
+          <span class="track-icon track-icon-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="track-icon track-icon-eq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14" width="3" height="6" rx="1"><animate attributeName="height" values="6;12;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;8;14" dur="0.8s" repeatCount="indefinite"/></rect><rect x="10.5" y="10" width="3" height="10" rx="1"><animate attributeName="height" values="10;4;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;16;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="17" y="12" width="3" height="8" rx="1"><animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;6;12" dur="0.8s" begin="0.4s" repeatCount="indefinite"/></rect></svg>
+          </span>
+          <div class="track-info">
+            <span class="track-title">About This Project</span>
+            <span class="track-sub">Purpose, approach, and the role of AI in this project</span>
+          </div>
+          <a href="about.html" class="track-link" title="Read article" aria-label="Read About This Project article">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <span class="track-duration" data-src="audio/about.mp3"></span>
+        </button>
+
+        <button class="track" role="listitem" data-src="audio/glossary.mp3" data-index="5">
+          <span class="track-num">6</span>
+          <span class="track-icon track-icon-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="track-icon track-icon-eq">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14" width="3" height="6" rx="1"><animate attributeName="height" values="6;12;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;8;14" dur="0.8s" repeatCount="indefinite"/></rect><rect x="10.5" y="10" width="3" height="10" rx="1"><animate attributeName="height" values="10;4;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;16;10" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="17" y="12" width="3" height="8" rx="1"><animate attributeName="height" values="8;14;8" dur="0.8s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;6;12" dur="0.8s" begin="0.4s" repeatCount="indefinite"/></rect></svg>
+          </span>
+          <div class="track-info">
+            <span class="track-title">Glossary</span>
+            <span class="track-sub">Key terms in AI, philosophy, and theology</span>
+          </div>
+          <a href="glossary.html" class="track-link" title="Read article" aria-label="Read Glossary article">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <span class="track-duration" data-src="audio/glossary.mp3"></span>
+        </button>
+
+      </div>
+
+    </main>
+
+    <footer>
+      <p>Truth &amp; Artificial Intelligence &mdash; A Christ-Centered Exploration of Technology</p>
+      <p><a href="https://github.com/pwevey/Finding-Truth-in-a-Sea-of-Information">View on GitHub</a></p>
+    </footer>
+
+  </div>
+  <script src="player.js"></script>
+</body>
+</html>
