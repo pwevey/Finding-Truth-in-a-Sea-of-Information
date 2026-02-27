@@ -85,12 +85,14 @@
     isPlaying = false;
     btnPlay.style.display = '';
     btnPause.style.display = 'none';
+    btnStop.style.display = 'none';
   }
 
   function showPause() {
     isPlaying = true;
     btnPlay.style.display = 'none';
     btnPause.style.display = '';
+    btnStop.style.display = '';
   }
 
   /* ---- Player controls ---- */
