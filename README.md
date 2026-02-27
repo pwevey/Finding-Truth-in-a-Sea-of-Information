@@ -103,8 +103,3 @@ Christ does not change.
 
 > "Jesus Christ is the same yesterday and today and forever." — Hebrews 13:8
 
----
-
-## License
-
-You may wish to include a license here (e.g., MIT, CC BY-NC, etc.) depending on how you want others to use or share these writings.
