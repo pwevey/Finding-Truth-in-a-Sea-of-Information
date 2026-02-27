@@ -625,3 +625,144 @@ footer a:hover {
 [data-theme="dark"] .reader-bar {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
+
+/* ===== Heading Anchor Links ===== */
+
+main h2,
+main h3 {
+  position: relative;
+}
+
+.heading-anchor {
+  opacity: 0;
+  margin-left: 0.35em;
+  color: #aaa;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 0.85em;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+main h2:hover .heading-anchor,
+main h3:hover .heading-anchor,
+.heading-anchor:focus {
+  opacity: 1;
+}
+
+.heading-anchor:hover {
+  opacity: 1;
+  color: #3498db;
+}
+
+[data-theme="dark"] .heading-anchor {
+  color: #666;
+}
+
+[data-theme="dark"] .heading-anchor:hover {
+  color: #6da3d9;
+}
+
+/* ===== Print Stylesheet ===== */
+
+@media print {
+  /* Hide interactive / non-content elements */
+  .skip-link,
+  nav,
+  .reader-bar,
+  .theme-switch,
+  .heading-anchor,
+  footer a,
+  .label {
+    display: none !important;
+  }
+
+  /* Reset colors for print */
+  body {
+    color: #000 !important;
+    background: #fff !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  header {
+    border-bottom: 1px solid #000;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  header h1 {
+    color: #000 !important;
+    font-size: 18pt;
+  }
+
+  header p {
+    color: #333 !important;
+  }
+
+  main h2 {
+    color: #000 !important;
+    font-size: 14pt;
+    margin-top: 1.2em;
+    page-break-after: avoid;
+  }
+
+  main h3 {
+    color: #000 !important;
+    font-size: 12pt;
+    page-break-after: avoid;
+  }
+
+  main a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  /* Show link URLs after text for reference */
+  main a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555;
+  }
+
+  blockquote {
+    border-left: 2px solid #000;
+    color: #333 !important;
+    page-break-inside: avoid;
+  }
+
+  .notice {
+    border: 1px solid #000;
+    background: none !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+
+  .document-meta {
+    border-left: 2px solid #000;
+    background: none !important;
+    color: #000 !important;
+  }
+
+  footer {
+    border-top: 1px solid #000;
+    color: #333 !important;
+    font-size: 10pt;
+    margin-top: 2em;
+  }
+
+  /* Prevent awkward page breaks */
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+}

@@ -160,3 +160,46 @@
   });
 
 })();
+
+/* ===== Heading Anchor Links ===== */
+(function () {
+  'use strict';
+
+  function slugify(text) {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var main = document.querySelector('main');
+    if (!main) return;
+
+    var headings = main.querySelectorAll('h2, h3');
+    var usedIds = {};
+
+    headings.forEach(function (h) {
+      var id = slugify(h.textContent);
+      /* Ensure unique IDs */
+      if (usedIds[id]) {
+        usedIds[id]++;
+        id = id + '-' + usedIds[id];
+      } else {
+        usedIds[id] = 1;
+      }
+
+      h.id = id;
+
+      var anchor = document.createElement('a');
+      anchor.className = 'heading-anchor';
+      anchor.href = '#' + id;
+      anchor.setAttribute('aria-label', 'Link to this section');
+      anchor.textContent = '#';
+
+      h.appendChild(anchor);
+    });
+  });
+})();
