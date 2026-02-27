@@ -1130,6 +1130,25 @@ footer a:hover {
   color: #8fbde8;
 }
 
+/* ===== Author Photo ===== */
+
+.author-photo {
+  text-align: center;
+  margin: 0 auto 2rem;
+}
+
+.author-photo img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1a365d;
+}
+
+[data-theme="dark"] .author-photo img {
+  border-color: #8fbde8;
+}
+
 /* ===== Heading Anchor Links ===== */
 
 main h2,
