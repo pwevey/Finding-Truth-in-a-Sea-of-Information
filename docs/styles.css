@@ -293,6 +293,17 @@ footer a:hover {
   background-color: #e8ecf0;
 }
 
+.reader-stop {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+}
+
+.reader-stop:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
 /* Progress bar */
 .reader-progress-wrap {
   flex: 1;
@@ -719,6 +730,18 @@ footer a:hover {
 .pc-play:hover,
 .pc-pause:hover {
   background: #e8ecf0;
+}
+
+.pc-stop {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pc-stop:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 /* Progress */

@@ -36,6 +36,8 @@
 
   var btnPlay = makeBtn('\u25B6', 'reader-play', 'Play');
   var btnPause = makeBtn('\u23F8', 'reader-pause', 'Pause');
+  var btnStop = makeBtn('\u25A0', 'reader-stop', 'Stop');
+  btnStop.style.display = 'none';
 
   /* Progress bar */
   var progressWrap = document.createElement('div');
@@ -79,6 +81,7 @@
   bar.appendChild(listenLabel);
   bar.appendChild(btnPlay);
   bar.appendChild(btnPause);
+  bar.appendChild(btnStop);
   bar.appendChild(progressWrap);
   bar.appendChild(timeDisplay);
   bar.appendChild(speedLabel);
@@ -116,9 +119,21 @@
     audio.pause();
   });
 
+  btnStop.addEventListener('click', function () {
+    audio.pause();
+    audio.currentTime = 0;
+    btnPlay.style.display = '';
+    btnPause.style.display = 'none';
+    btnStop.style.display = 'none';
+    btnPlay.setAttribute('aria-label', 'Play');
+    progressFill.style.width = '0%';
+    timeDisplay.textContent = '0:00 / ' + formatTime(audio.duration);
+  });
+
   audio.addEventListener('play', function () {
     btnPlay.style.display = 'none';
     btnPause.style.display = '';
+    btnStop.style.display = '';
   });
 
   audio.addEventListener('pause', function () {
@@ -132,6 +147,7 @@
     btnPlay.style.display = '';
     btnPlay.setAttribute('aria-label', 'Play');
     btnPause.style.display = 'none';
+    btnStop.style.display = 'none';
     progressFill.style.width = '0%';
   });
 

@@ -9,6 +9,7 @@
   var tracks = document.querySelectorAll('.track');
   var btnPlay = document.getElementById('btn-play');
   var btnPause = document.getElementById('btn-pause');
+  var btnStop = document.getElementById('btn-stop');
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
   var progressBar = document.getElementById('progress-bar');
@@ -106,6 +107,20 @@
   btnPause.addEventListener('click', function () {
     audio.pause();
     showPlay();
+  });
+
+  btnStop.addEventListener('click', function () {
+    audio.pause();
+    audio.currentTime = 0;
+    showPlay();
+    progressFill.style.width = '0%';
+    timeCurrent.textContent = '0:00';
+    if (currentIndex >= 0) {
+      tracks[currentIndex].classList.remove('track-active');
+    }
+    currentIndex = -1;
+    npTitle.textContent = 'Select a track to begin';
+    npDesc.textContent = '';
   });
 
   btnPrev.addEventListener('click', function () {
