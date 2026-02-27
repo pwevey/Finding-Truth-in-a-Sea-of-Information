@@ -662,6 +662,76 @@ main h3:hover .heading-anchor,
   color: #6da3d9;
 }
 
+/* ===== Reading Time ===== */
+
+.reading-time {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .reading-time {
+  color: #777;
+}
+
+/* ===== Table of Contents ===== */
+
+.toc {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.toc-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toc ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.toc li {
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.toc a {
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.toc a:hover {
+  color: #3498db;
+}
+
+[data-theme="dark"] .toc {
+  background-color: #1e1e36;
+  border-color: #333355;
+}
+
+[data-theme="dark"] .toc-title {
+  color: #aaa;
+}
+
+[data-theme="dark"] .toc a {
+  color: #6da3d9;
+}
+
+[data-theme="dark"] .toc a:hover {
+  color: #8fbde8;
+}
+
 /* ===== Print Stylesheet ===== */
 
 @media print {
@@ -671,6 +741,8 @@ main h3:hover .heading-anchor,
   .reader-bar,
   .theme-switch,
   .heading-anchor,
+  .toc,
+  .reading-time,
   footer a,
   .label {
     display: none !important;

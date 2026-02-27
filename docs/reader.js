@@ -201,5 +201,53 @@
 
       h.appendChild(anchor);
     });
+
+    /* ---- Reading Time Estimate ---- */
+    var text = main.textContent || '';
+    var wordCount = text.trim().split(/\s+/).length;
+    var minutes = Math.max(1, Math.round(wordCount / 225));
+
+    var readingTime = document.createElement('p');
+    readingTime.className = 'reading-time';
+    readingTime.textContent = '\u23F1 ' + minutes + ' min read';
+
+    /* Insert after .document-meta or .notice, or at the top of main */
+    var insertAfter = main.querySelector('.document-meta') || main.querySelector('.notice');
+    if (insertAfter) {
+      insertAfter.parentNode.insertBefore(readingTime, insertAfter.nextSibling);
+    } else {
+      main.insertBefore(readingTime, main.firstChild);
+    }
+
+    /* ---- Table of Contents ---- */
+    var h2s = main.querySelectorAll('h2');
+    if (h2s.length >= 3) {
+      var tocWrapper = document.createElement('nav');
+      tocWrapper.className = 'toc';
+      tocWrapper.setAttribute('aria-label', 'Table of contents');
+
+      var tocTitle = document.createElement('p');
+      tocTitle.className = 'toc-title';
+      tocTitle.textContent = 'Contents';
+      tocWrapper.appendChild(tocTitle);
+
+      var tocList = document.createElement('ol');
+
+      h2s.forEach(function (h2) {
+        if (!h2.id) return;
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + h2.id;
+        /* Get text without the anchor '#' */
+        a.textContent = h2.textContent.replace(/\s*#\s*$/, '');
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      tocWrapper.appendChild(tocList);
+
+      /* Insert TOC after reading time */
+      readingTime.parentNode.insertBefore(tocWrapper, readingTime.nextSibling);
+    }
   });
 })();
