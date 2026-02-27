@@ -48,5 +48,15 @@
       <category>Theology</category>
     </item>
 
+    <item>
+      <title>Accuracy Is Not Truth: AI in a Post-Epistemic World</title>
+      <link>https://truthandai.org/accuracy-is-not-truth.html</link>
+      <guid isPermaLink="true">https://truthandai.org/accuracy-is-not-truth.html</guid>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      <description>An AI-generated exploration of why AI accuracy does not equate to truth, examining truth-bias, hallucinations, deepfakes, and the need for human oversight in the age of generative AI.</description>
+      <category>AI-Generated</category>
+      <category>Epistemology</category>
+    </item>
+
   </channel>
 </rss>
