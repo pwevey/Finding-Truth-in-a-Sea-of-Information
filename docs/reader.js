@@ -83,7 +83,7 @@
   bar.appendChild(speedLabel);
 
   /* Insert before main */
-  var mainEl = document.querySelector('main');
+  var mainEl = document.getElementById('main-content') || document.querySelector('main');
   if (mainEl) {
     mainEl.parentNode.insertBefore(bar, mainEl);
   }

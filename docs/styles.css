@@ -20,6 +20,34 @@ body {
   line-height: 1.7;
 }
 
+/* Accessibility — visible focus outlines */
+:focus-visible {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip-to-content link (screen readers + keyboard) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 4px 4px;
+  z-index: 100;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -342,4 +370,176 @@ footer a:hover {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   flex-shrink: 0;
+}
+
+/* ===== Mobile Responsive ===== */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1.25rem 1rem;
+  }
+
+  header h1 {
+    font-size: 1.35rem;
+  }
+
+  header p {
+    font-size: 0.85rem;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+  }
+
+  main h2 {
+    font-size: 1.15rem;
+  }
+
+  blockquote {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .document-list .label {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.3rem;
+    width: fit-content;
+  }
+
+  /* Audio player: stack on small screens */
+  .reader-bar {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+  }
+
+  .reader-bar button {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+
+  .reader-label {
+    font-size: 0.6rem;
+  }
+
+  .reader-time {
+    font-size: 0.65rem;
+    min-width: 60px;
+  }
+
+  .reader-speed-label {
+    font-size: 0.65rem;
+  }
+
+  .reader-speed {
+    font-size: 0.7rem;
+  }
+
+  .reader-progress-wrap {
+    min-width: 60px;
+  }
+}
+
+/* ===== Dark Mode ===== */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #e0e0e0;
+    background-color: #1a1a2e;
+  }
+
+  header h1 {
+    color: #f0f0f0;
+  }
+
+  header p {
+    color: #a0a0a0;
+  }
+
+  header {
+    border-bottom-color: #333355;
+  }
+
+  nav a {
+    color: #6da3d9;
+  }
+
+  nav a:hover {
+    color: #8fbde8;
+  }
+
+  nav a.active {
+    color: #e0e0e0;
+  }
+
+  main h2 {
+    color: #f0f0f0;
+  }
+
+  main h3 {
+    color: #cccccc;
+  }
+
+  main a {
+    color: #6da3d9;
+  }
+
+  main a:hover {
+    color: #8fbde8;
+  }
+
+  .document-list li {
+    border-bottom-color: #2a2a4a;
+  }
+
+  .label-human {
+    background-color: #2a3d2a;
+    color: #7ec87e;
+  }
+
+  .label-ai {
+    background-color: #3d2a2a;
+    color: #c87e7e;
+  }
+
+  .document-meta {
+    background-color: #1e1e36;
+    border-left-color: #6da3d9;
+    color: #b0b0b0;
+  }
+
+  blockquote {
+    border-left-color: #444466;
+    color: #b0b0b0;
+  }
+
+  .notice {
+    background-color: #1e1e36;
+    border-color: #333355;
+    color: #b0b0b0;
+  }
+
+  footer {
+    border-top-color: #333355;
+    color: #777777;
+  }
+
+  footer a {
+    color: #777777;
+  }
+
+  footer a:hover {
+    color: #aaaaaa;
+  }
+
+  /* Audio player already dark — just minor tweaks */
+  .reader-bar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
 }
