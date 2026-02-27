@@ -83,7 +83,7 @@ A minimal static site is available in the [`/docs`](docs/) folder and is deploye
 - [index.html](docs/index.html) — Home page with project introduction and document links.
 - [about.html](docs/about.html) — About page explaining the project's purpose and methodology.
 
-**Live site:** [https://pwevey.github.io/Finding-Truth-in-a-Sea-of-Information/](https://pwevey.github.io/Finding-Truth-in-a-Sea-of-Information/)
+**Live site:** [https://truthandai.org/](https://truthandai.org/)
 
 Each document may be updated over time.
 
