@@ -446,100 +446,123 @@ footer a:hover {
   }
 }
 
+/* ===== Theme Toggle Button ===== */
+
+.theme-toggle {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.15rem 0.45rem;
+  line-height: 1;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  vertical-align: middle;
+}
+
+.theme-toggle:hover {
+  background-color: #f0f0f0;
+}
+
 /* ===== Dark Mode ===== */
 
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #e0e0e0;
-    background-color: #1a1a2e;
-  }
+[data-theme="dark"] body {
+  color: #e0e0e0;
+  background-color: #1a1a2e;
+}
 
-  header h1 {
-    color: #f0f0f0;
-  }
+[data-theme="dark"] header h1 {
+  color: #f0f0f0;
+}
 
-  header p {
-    color: #a0a0a0;
-  }
+[data-theme="dark"] header p {
+  color: #a0a0a0;
+}
 
-  header {
-    border-bottom-color: #333355;
-  }
+[data-theme="dark"] header {
+  border-bottom-color: #333355;
+}
 
-  nav a {
-    color: #6da3d9;
-  }
+[data-theme="dark"] nav a {
+  color: #6da3d9;
+}
 
-  nav a:hover {
-    color: #8fbde8;
-  }
+[data-theme="dark"] nav a:hover {
+  color: #8fbde8;
+}
 
-  nav a.active {
-    color: #e0e0e0;
-  }
+[data-theme="dark"] nav a.active {
+  color: #e0e0e0;
+}
 
-  main h2 {
-    color: #f0f0f0;
-  }
+[data-theme="dark"] main h2 {
+  color: #f0f0f0;
+}
 
-  main h3 {
-    color: #cccccc;
-  }
+[data-theme="dark"] main h3 {
+  color: #cccccc;
+}
 
-  main a {
-    color: #6da3d9;
-  }
+[data-theme="dark"] main a {
+  color: #6da3d9;
+}
 
-  main a:hover {
-    color: #8fbde8;
-  }
+[data-theme="dark"] main a:hover {
+  color: #8fbde8;
+}
 
-  .document-list li {
-    border-bottom-color: #2a2a4a;
-  }
+[data-theme="dark"] .document-list li {
+  border-bottom-color: #2a2a4a;
+}
 
-  .label-human {
-    background-color: #2a3d2a;
-    color: #7ec87e;
-  }
+[data-theme="dark"] .label-human {
+  background-color: #2a3d2a;
+  color: #7ec87e;
+}
 
-  .label-ai {
-    background-color: #3d2a2a;
-    color: #c87e7e;
-  }
+[data-theme="dark"] .label-ai {
+  background-color: #3d2a2a;
+  color: #c87e7e;
+}
 
-  .document-meta {
-    background-color: #1e1e36;
-    border-left-color: #6da3d9;
-    color: #b0b0b0;
-  }
+[data-theme="dark"] .document-meta {
+  background-color: #1e1e36;
+  border-left-color: #6da3d9;
+  color: #b0b0b0;
+}
 
-  blockquote {
-    border-left-color: #444466;
-    color: #b0b0b0;
-  }
+[data-theme="dark"] blockquote {
+  border-left-color: #444466;
+  color: #b0b0b0;
+}
 
-  .notice {
-    background-color: #1e1e36;
-    border-color: #333355;
-    color: #b0b0b0;
-  }
+[data-theme="dark"] .notice {
+  background-color: #1e1e36;
+  border-color: #333355;
+  color: #b0b0b0;
+}
 
-  footer {
-    border-top-color: #333355;
-    color: #777777;
-  }
+[data-theme="dark"] footer {
+  border-top-color: #333355;
+  color: #777777;
+}
 
-  footer a {
-    color: #777777;
-  }
+[data-theme="dark"] footer a {
+  color: #777777;
+}
 
-  footer a:hover {
-    color: #aaaaaa;
-  }
+[data-theme="dark"] footer a:hover {
+  color: #aaaaaa;
+}
 
-  /* Audio player already dark — just minor tweaks */
-  .reader-bar {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
+[data-theme="dark"] .theme-toggle {
+  border-color: #555;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background-color: #2a2a4a;
+}
+
+[data-theme="dark"] .reader-bar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
