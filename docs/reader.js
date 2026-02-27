@@ -9,6 +9,70 @@
   var utterance = null;
   var playing = false;
   var paused = false;
+  var bestVoice = null;
+
+  /* ---- SVG Icons ---- */
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+  var ICON_STOP = '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>';
+  var ICON_LISTEN = '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;margin-right:4px;vertical-align:middle"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+
+  /* ---- Voice selection ---- */
+  /*
+   * Prefer high-quality voices available for free in modern browsers:
+   * - Chrome: "Google US English" (natural-sounding, remote)
+   * - Edge:   "Microsoft ... Online (Natural)" voices
+   * - Safari: "Samantha (Enhanced)", "Daniel (Enhanced)"
+   * - Firefox: best available en-US voice
+   */
+  var PREFERRED_VOICES = [
+    'google us english',
+    'google uk english female',
+    'google uk english male',
+    'microsoft aria online (natural)',
+    'microsoft guy online (natural)',
+    'microsoft jenny online (natural)',
+    'microsoft ana online (natural)',
+    'samantha (enhanced)',
+    'daniel (enhanced)',
+    'karen (enhanced)',
+    'samantha',
+    'alex',
+    'daniel'
+  ];
+
+  function selectBestVoice() {
+    var voices = synth.getVoices();
+    if (!voices.length) return null;
+
+    /* Try preferred voices in order */
+    for (var i = 0; i < PREFERRED_VOICES.length; i++) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].name.toLowerCase() === PREFERRED_VOICES[i]) {
+          return voices[j];
+        }
+      }
+    }
+
+    /* Fallback: any English voice */
+    for (var k = 0; k < voices.length; k++) {
+      if (voices[k].lang && voices[k].lang.indexOf('en') === 0) {
+        return voices[k];
+      }
+    }
+
+    return voices[0];
+  }
+
+  /* Voices load asynchronously in some browsers */
+  function loadVoices() {
+    bestVoice = selectBestVoice();
+  }
+
+  loadVoices();
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = loadVoices;
+  }
 
   /* ---- Build UI ---- */
   var bar = document.createElement('div');
@@ -16,9 +80,16 @@
   bar.setAttribute('role', 'region');
   bar.setAttribute('aria-label', 'Voice reader controls');
 
-  var btnPlay = btn('Play', 'reader-play', handlePlay);
-  var btnPause = btn('Pause', 'reader-pause', handlePause);
-  var btnStop = btn('Stop', 'reader-stop', handleStop);
+  var listenLabel = document.createElement('span');
+  listenLabel.className = 'reader-label';
+  listenLabel.innerHTML = ICON_LISTEN + 'Listen';
+
+  var btnPlay = iconBtn(ICON_PLAY, 'reader-play', 'Play', handlePlay);
+  var btnPause = iconBtn(ICON_PAUSE, 'reader-pause', 'Pause', handlePause);
+  var btnStop = iconBtn(ICON_STOP, 'reader-stop', 'Stop', handleStop);
+
+  var divider = document.createElement('span');
+  divider.className = 'reader-divider';
 
   var speedLabel = document.createElement('label');
   speedLabel.className = 'reader-speed-label';
@@ -27,9 +98,9 @@
   speedSelect.className = 'reader-speed';
   speedSelect.setAttribute('aria-label', 'Reading speed');
   [
-    { value: '0.75', text: '0.75x' },
+    { value: '0.8',  text: '0.8x' },
     { value: '1',    text: '1x' },
-    { value: '1.25', text: '1.25x' },
+    { value: '1.2',  text: '1.2x' },
     { value: '1.5',  text: '1.5x' },
     { value: '2',    text: '2x' }
   ].forEach(function (opt) {
@@ -48,9 +119,11 @@
   btnPause.style.display = 'none';
   btnStop.style.display = 'none';
 
+  bar.appendChild(listenLabel);
   bar.appendChild(btnPlay);
   bar.appendChild(btnPause);
   bar.appendChild(btnStop);
+  bar.appendChild(divider);
   bar.appendChild(speedLabel);
   bar.appendChild(status);
 
@@ -61,11 +134,13 @@
   }
 
   /* ---- Helpers ---- */
-  function btn(label, cls, handler) {
+  function iconBtn(svgHTML, cls, ariaLabel, handler) {
     var b = document.createElement('button');
     b.type = 'button';
     b.className = cls;
-    b.textContent = label;
+    b.innerHTML = svgHTML;
+    b.setAttribute('aria-label', ariaLabel);
+    b.setAttribute('title', ariaLabel);
     b.addEventListener('click', handler);
     return b;
   }
@@ -73,9 +148,7 @@
   function getReadableText() {
     var el = document.querySelector('main');
     if (!el) return '';
-    /* Clone to strip hidden elements and controls */
     var clone = el.cloneNode(true);
-    /* Remove elements that shouldn't be read */
     var skip = clone.querySelectorAll('script, style, .reader-bar');
     for (var i = 0; i < skip.length; i++) {
       skip[i].parentNode.removeChild(skip[i]);
@@ -93,7 +166,6 @@
       return;
     }
 
-    /* Cancel any prior speech */
     synth.cancel();
 
     var text = getReadableText();
@@ -101,7 +173,13 @@
 
     utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = parseFloat(speedSelect.value);
+    utterance.pitch = 1;
     utterance.lang = 'en-US';
+
+    /* Use the best voice we found */
+    if (bestVoice) {
+      utterance.voice = bestVoice;
+    }
 
     utterance.onend = function () {
       playing = false;
@@ -145,16 +223,20 @@
       btnPlay.style.display = 'none';
       btnPause.style.display = '';
       btnStop.style.display = '';
-      status.textContent = 'Reading...';
+      status.innerHTML = '<span class="reader-dot reader-dot-playing"></span>Reading';
     } else if (paused) {
       btnPlay.style.display = '';
-      btnPlay.textContent = 'Resume';
+      btnPlay.innerHTML = ICON_PLAY;
+      btnPlay.setAttribute('aria-label', 'Resume');
+      btnPlay.setAttribute('title', 'Resume');
       btnPause.style.display = 'none';
       btnStop.style.display = '';
-      status.textContent = 'Paused';
+      status.innerHTML = '<span class="reader-dot reader-dot-paused"></span>Paused';
     } else {
       btnPlay.style.display = '';
-      btnPlay.textContent = 'Play';
+      btnPlay.innerHTML = ICON_PLAY;
+      btnPlay.setAttribute('aria-label', 'Play');
+      btnPlay.setAttribute('title', 'Play');
       btnPause.style.display = 'none';
       btnStop.style.display = 'none';
       status.textContent = '';
@@ -164,7 +246,6 @@
   /* Speed change while playing */
   speedSelect.addEventListener('change', function () {
     if (playing || paused) {
-      /* Restart with new rate — Speech API doesn't allow rate change mid-stream */
       synth.cancel();
       playing = false;
       paused = false;

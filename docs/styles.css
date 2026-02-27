@@ -212,66 +212,143 @@ footer a:hover {
   color: #666666;
 }
 
-/* Voice Reader Bar */
+/* Voice Reader Player */
 
 .reader-bar {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  background-color: #f5f7fa;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.85rem;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .reader-bar button {
-  font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #ffffff;
-  background-color: #4a6fa5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   border: none;
-  border-radius: 3px;
-  padding: 0.35rem 0.85rem;
+  border-radius: 50%;
   cursor: pointer;
-  line-height: 1.4;
+  padding: 0;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  flex-shrink: 0;
 }
 
-.reader-bar button:hover {
-  background-color: #3b5d8c;
+.reader-bar button:active {
+  transform: scale(0.93);
+}
+
+.reader-bar button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.reader-play {
+  background-color: #ffffff;
+  color: #2c3e50;
+}
+
+.reader-play:hover {
+  background-color: #e8ecf0;
+}
+
+.reader-pause {
+  background-color: #ffffff;
+  color: #2c3e50;
+}
+
+.reader-pause:hover {
+  background-color: #e8ecf0;
 }
 
 .reader-stop {
-  background-color: #888888 !important;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
 .reader-stop:hover {
-  background-color: #666666 !important;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.reader-divider {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
 .reader-speed-label {
-  color: #666666;
-  font-size: 0.8rem;
-  margin-left: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .reader-speed {
   font-family: inherit;
   font-size: 0.8rem;
-  padding: 0.2rem 0.3rem;
-  border: 1px solid #cccccc;
-  border-radius: 3px;
-  background-color: #ffffff;
-  color: #333333;
-  margin-left: 0.15rem;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.reader-speed:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 1px;
+}
+
+.reader-speed option {
+  background-color: #2c3e50;
+  color: #ffffff;
+}
+
+.reader-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 
 .reader-status {
-  color: #666666;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.8rem;
-  font-style: italic;
   margin-left: auto;
+  white-space: nowrap;
+}
+
+.reader-status .reader-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+
+.reader-dot-playing {
+  background-color: #2ecc71;
+  animation: reader-pulse 1.2s ease-in-out infinite;
+}
+
+.reader-dot-paused {
+  background-color: #f39c12;
+}
+
+@keyframes reader-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
