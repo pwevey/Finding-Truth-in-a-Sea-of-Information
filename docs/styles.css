@@ -1213,6 +1213,15 @@ footer a:hover {
   border-top: 1px solid #d0d0d0;
 }
 
+.share-bar-top {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 1.5rem;
+  border-top: none;
+  border-bottom: 1px solid #d0d0d0;
+}
+
 .share-label {
   font-size: 0.9rem;
   font-weight: 600;
@@ -1390,19 +1399,6 @@ main h3:hover .heading-anchor,
   color: #6da3d9;
 }
 
-/* ===== Reading Time ===== */
-
-.reading-time {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
-}
-
-[data-theme="dark"] .reading-time {
-  color: #777;
-}
-
 /* ===== Table of Contents ===== */
 
 .toc {
@@ -1472,7 +1468,6 @@ main h3:hover .heading-anchor,
   .theme-switch,
   .heading-anchor,
   .toc,
-  .reading-time,
   footer a,
   .label {
     display: none !important;

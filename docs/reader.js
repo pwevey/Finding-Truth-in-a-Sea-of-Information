@@ -224,23 +224,6 @@
       h.appendChild(anchor);
     });
 
-    /* ---- Reading Time Estimate ---- */
-    var text = main.textContent || '';
-    var wordCount = text.trim().split(/\s+/).length;
-    var minutes = Math.max(1, Math.round(wordCount / 225));
-
-    var readingTime = document.createElement('p');
-    readingTime.className = 'reading-time';
-    readingTime.textContent = '\u23F1 ' + minutes + ' min read';
-
-    /* Insert after .document-meta or .notice, or at the top of main */
-    var insertAfter = main.querySelector('.document-meta') || main.querySelector('.notice');
-    if (insertAfter) {
-      insertAfter.parentNode.insertBefore(readingTime, insertAfter.nextSibling);
-    } else {
-      main.insertBefore(readingTime, main.firstChild);
-    }
-
     /* ---- Table of Contents ---- */
     var h2s = main.querySelectorAll('h2');
     if (h2s.length >= 3) {
@@ -268,8 +251,14 @@
 
       tocWrapper.appendChild(tocList);
 
-      /* Insert TOC after reading time */
-      readingTime.parentNode.insertBefore(tocWrapper, readingTime.nextSibling);
+      /* Insert TOC after .document-meta or .notice, or at top of main */
+      var insertAfter = main.querySelector('.document-meta') || main.querySelector('.notice');
+      if (insertAfter && insertAfter.parentNode === main) {
+        /* Only use insertAfter if it's a direct child of main (not nested) */
+        insertAfter.parentNode.insertBefore(tocWrapper, insertAfter.nextSibling);
+      } else {
+        main.insertBefore(tocWrapper, main.firstChild);
+      }
     }
 
     /* ---- Social Sharing Buttons (article pages only) ---- */
@@ -280,7 +269,8 @@
       'accuracy-is-not-truth.html'
     ];
 
-    if (ARTICLE_PAGES.indexOf(page) !== -1) {
+    /* Helper: build a share bar */
+    function createShareBar() {
       var pageUrl = encodeURIComponent(window.location.href);
       var pageTitle = encodeURIComponent(document.title);
 
@@ -328,7 +318,22 @@
         shareBar.appendChild(btn);
       });
 
-      main.appendChild(shareBar);
+      return shareBar;
+    }
+
+    if (ARTICLE_PAGES.indexOf(page) !== -1) {
+      /* Top share bar — insert after .document-meta or at top of main */
+      var topShare = createShareBar();
+      topShare.classList.add('share-bar-top');
+      var metaEl = main.querySelector('.document-meta');
+      if (metaEl) {
+        metaEl.parentNode.insertBefore(topShare, metaEl.nextSibling);
+      } else {
+        main.insertBefore(topShare, main.firstChild);
+      }
+
+      /* Bottom share bar */
+      main.appendChild(createShareBar());
     }
 
     /* ---- Related Articles (article pages only) ---- */
