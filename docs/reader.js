@@ -267,5 +267,159 @@
       /* Insert TOC after reading time */
       readingTime.parentNode.insertBefore(tocWrapper, readingTime.nextSibling);
     }
+
+    /* ---- Social Sharing Buttons (article pages only) ---- */
+    var ARTICLE_PAGES = [
+      'manifesto.html',
+      'ai-reflection-on-truth.html',
+      'christian-framework-ai.html',
+      'accuracy-is-not-truth.html'
+    ];
+
+    if (ARTICLE_PAGES.indexOf(page) !== -1) {
+      var pageUrl = encodeURIComponent(window.location.href);
+      var pageTitle = encodeURIComponent(document.title);
+
+      var shareBar = document.createElement('div');
+      shareBar.className = 'share-bar';
+      shareBar.setAttribute('aria-label', 'Share this article');
+
+      var shareLabel = document.createElement('span');
+      shareLabel.className = 'share-label';
+      shareLabel.textContent = 'Share';
+      shareBar.appendChild(shareLabel);
+
+      var shares = [
+        { name: 'X', url: 'https://x.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle, icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' },
+        { name: 'Facebook', url: 'https://www.facebook.com/sharer/sharer.php?u=' + pageUrl, icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>' },
+        { name: 'Copy link', url: '', icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' }
+      ];
+
+      shares.forEach(function (s) {
+        var btn = document.createElement('a');
+        btn.className = 'share-btn';
+        btn.setAttribute('aria-label', s.name);
+        btn.setAttribute('title', s.name);
+        btn.innerHTML = s.icon;
+
+        if (s.name === 'Copy link') {
+          btn.href = '#';
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(window.location.href).then(function () {
+              btn.classList.add('copied');
+              btn.setAttribute('title', 'Copied!');
+              setTimeout(function () {
+                btn.classList.remove('copied');
+                btn.setAttribute('title', 'Copy link');
+              }, 2000);
+            });
+          });
+        } else {
+          btn.href = s.url;
+          btn.target = '_blank';
+          btn.rel = 'noopener noreferrer';
+        }
+
+        shareBar.appendChild(btn);
+      });
+
+      main.appendChild(shareBar);
+    }
+
+    /* ---- Related Articles (article pages only) ---- */
+    var ARTICLES = {
+      'manifesto.html': {
+        title: 'Finding Truth in a Sea of Information',
+        desc: 'Human-authored manifesto on AI, truth, and faith.'
+      },
+      'ai-reflection-on-truth.html': {
+        title: 'AI Reflection on the Nature of Truth',
+        desc: 'Philosophical overview of truth and how LLMs function.'
+      },
+      'christian-framework-ai.html': {
+        title: 'Summary of a Christian Framework for Understanding AI',
+        desc: 'AI as a tool and truth grounded in God.'
+      },
+      'accuracy-is-not-truth.html': {
+        title: 'Accuracy Is Not Truth: AI in a Post-Epistemic World',
+        desc: 'Truth-bias, hallucinations, deepfakes, and human oversight.'
+      }
+    };
+
+    if (ARTICLE_PAGES.indexOf(page) !== -1) {
+      var relatedSection = document.createElement('aside');
+      relatedSection.className = 'related-articles';
+      relatedSection.setAttribute('aria-label', 'Related articles');
+
+      var relTitle = document.createElement('h2');
+      relTitle.textContent = 'You May Also Be Interested In';
+      relatedSection.appendChild(relTitle);
+
+      var relList = document.createElement('ul');
+
+      Object.keys(ARTICLES).forEach(function (key) {
+        if (key === page) return;
+        var art = ARTICLES[key];
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = key;
+        a.textContent = art.title;
+        li.appendChild(a);
+        var small = document.createElement('small');
+        small.textContent = ' — ' + art.desc;
+        li.appendChild(small);
+        relList.appendChild(li);
+      });
+
+      relatedSection.appendChild(relList);
+      main.appendChild(relatedSection);
+    }
+
+    /* ---- Utterances Comments (article pages only) ---- */
+    if (ARTICLE_PAGES.indexOf(page) !== -1) {
+      var commentsSection = document.createElement('div');
+      commentsSection.className = 'comments-section';
+
+      var commentsTitle = document.createElement('h2');
+      commentsTitle.textContent = 'Comments';
+      commentsSection.appendChild(commentsTitle);
+
+      var utterances = document.createElement('script');
+      utterances.src = 'https://utteranc.es/client.js';
+      utterances.setAttribute('repo', 'pwevey/Finding-Truth-in-a-Sea-of-Information');
+      utterances.setAttribute('issue-term', 'pathname');
+      utterances.setAttribute('theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'github-dark' : 'github-light');
+      utterances.setAttribute('crossorigin', 'anonymous');
+      utterances.async = true;
+      commentsSection.appendChild(utterances);
+
+      main.appendChild(commentsSection);
+    }
+  });
+
+  /* ---- Back to Top Button (all pages) ---- */
+  var topBtn = document.createElement('button');
+  topBtn.className = 'back-to-top';
+  topBtn.setAttribute('aria-label', 'Back to top');
+  topBtn.title = 'Back to top';
+  topBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
+  document.body.appendChild(topBtn);
+
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  var scrollTimeout;
+  window.addEventListener('scroll', function () {
+    if (scrollTimeout) return;
+    scrollTimeout = setTimeout(function () {
+      scrollTimeout = null;
+      if (window.scrollY > 400) {
+        topBtn.classList.add('visible');
+      } else {
+        topBtn.classList.remove('visible');
+      }
+    }, 100);
   });
 })();

@@ -220,4 +220,29 @@
     }
   });
 
+  /* ---- Back to Top Button ---- */
+  var topBtn = document.createElement('button');
+  topBtn.className = 'back-to-top';
+  topBtn.setAttribute('aria-label', 'Back to top');
+  topBtn.title = 'Back to top';
+  topBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
+  document.body.appendChild(topBtn);
+
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  var scrollTimeout;
+  window.addEventListener('scroll', function () {
+    if (scrollTimeout) return;
+    scrollTimeout = setTimeout(function () {
+      scrollTimeout = null;
+      if (window.scrollY > 400) {
+        topBtn.classList.add('visible');
+      } else {
+        topBtn.classList.remove('visible');
+      }
+    }, 100);
+  });
+
 })();

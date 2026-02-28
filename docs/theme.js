@@ -88,6 +88,16 @@
       var next = now === 'dark' ? 'light' : 'dark';
       localStorage.setItem(STORAGE_KEY, next);
       apply(next);
+
+      /* Sync utterances comment theme if present */
+      var utterancesFrame = document.querySelector('.utterances-frame');
+      if (utterancesFrame) {
+        var utTheme = next === 'dark' ? 'github-dark' : 'github-light';
+        utterancesFrame.contentWindow.postMessage(
+          { type: 'set-theme', theme: utTheme },
+          'https://utteranc.es'
+        );
+      }
     });
 
     /* Keyboard handler */
