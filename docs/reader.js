@@ -251,11 +251,10 @@
 
       tocWrapper.appendChild(tocList);
 
-      /* Insert TOC after .document-meta or .notice, or at top of main */
-      var insertAfter = main.querySelector('.document-meta') || main.querySelector('.notice');
-      if (insertAfter && insertAfter.parentNode === main) {
-        /* Only use insertAfter if it's a direct child of main (not nested) */
-        insertAfter.parentNode.insertBefore(tocWrapper, insertAfter.nextSibling);
+      /* Insert TOC after .document-meta (article pages) or at top of main */
+      var tocAnchor = main.querySelector('.document-meta');
+      if (tocAnchor) {
+        tocAnchor.parentNode.insertBefore(tocWrapper, tocAnchor.nextSibling);
       } else {
         main.insertBefore(tocWrapper, main.firstChild);
       }
