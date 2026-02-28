@@ -183,6 +183,10 @@
 (function () {
   'use strict';
 
+  /* Determine current page name */
+  var path = window.location.pathname;
+  var page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+
   function slugify(text) {
     return text
       .toLowerCase()
