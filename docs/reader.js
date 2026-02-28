@@ -10,6 +10,7 @@
     'ai-reflection-on-truth.html':  'audio/ai-reflection.mp3',
     'christian-framework-ai.html':  'audio/christian-framework.mp3',
     'accuracy-is-not-truth.html':    'audio/accuracy-is-not-truth.mp3',
+    'truth-more-important-than-ever.html': 'audio/truth-more-important.mp3',
     'about.html':                   'audio/about.mp3',
     'glossary.html':                'audio/glossary.mp3'
   };
@@ -265,7 +266,8 @@
       'manifesto.html',
       'ai-reflection-on-truth.html',
       'christian-framework-ai.html',
-      'accuracy-is-not-truth.html'
+      'accuracy-is-not-truth.html',
+      'truth-more-important-than-ever.html'
     ];
 
     /* Helper: build a share bar */
@@ -352,6 +354,10 @@
       'accuracy-is-not-truth.html': {
         title: 'Accuracy Is Not Truth: AI in a Post-Epistemic World',
         desc: 'Truth-bias, hallucinations, deepfakes, and human oversight.'
+      },
+      'truth-more-important-than-ever.html': {
+        title: 'Truth Is More Important Than Ever',
+        desc: 'Why AI makes the pursuit of genuine truth more urgent than ever.'
       }
     };
 

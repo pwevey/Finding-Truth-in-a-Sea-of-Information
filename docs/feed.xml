@@ -9,7 +9,7 @@
     <language>en-us</language>
     <managingEditor>paul@truthandai.org (Paul Wever)</managingEditor>
     <webMaster>paul@truthandai.org (Paul Wever)</webMaster>
-    <lastBuildDate>Fri, 27 Feb 2026 21:31:43 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Feb 2026 01:34:54 +0000</lastBuildDate>
     <atom:link href="https://truthandai.org/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://truthandai.org/images/og-default.png</url>
@@ -55,6 +55,15 @@
       <description>An AI-generated summary of a Christian framework for understanding AI: AI as a tool, truth grounded in God, and responsible use of technology.</description>
       <category>AI-Generated</category>
       <category>Theology</category>
+    </item>
+
+    <item>
+      <title>Truth Is More Important Than Ever</title>
+      <link>https://truthandai.org/truth-more-important-than-ever.html</link>
+      <guid isPermaLink="true">https://truthandai.org/truth-more-important-than-ever.html</guid>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      <description>An AI-generated exploration of why truth matters more now than at any point in modern history, as AI-generated content floods every channel of human communication.</description>
+      <category>AI-Generated</category>
     </item>
 
   </channel>
