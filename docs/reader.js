@@ -11,6 +11,7 @@
     'christian-framework-ai.html':  'audio/christian-framework.mp3',
     'accuracy-is-not-truth.html':    'audio/accuracy-is-not-truth.mp3',
     'truth-more-important-than-ever.html': 'audio/truth-more-important.mp3',
+    'convincing-but-false.html':    'audio/convincing-but-false.mp3',
     'about.html':                   'audio/about.mp3',
     'glossary.html':                'audio/glossary.mp3'
   };
@@ -267,7 +268,8 @@
       'ai-reflection-on-truth.html',
       'christian-framework-ai.html',
       'accuracy-is-not-truth.html',
-      'truth-more-important-than-ever.html'
+      'truth-more-important-than-ever.html',
+      'convincing-but-false.html'
     ];
 
     /* Helper: build a share bar */
@@ -358,6 +360,10 @@
       'truth-more-important-than-ever.html': {
         title: 'Truth Is More Important Than Ever',
         desc: 'Why AI makes the pursuit of genuine truth more urgent than ever.'
+      },
+      'convincing-but-false.html': {
+        title: 'Convincing Does Not Mean True',
+        desc: 'How AI produces convincing but completely false information.'
       }
     };
 

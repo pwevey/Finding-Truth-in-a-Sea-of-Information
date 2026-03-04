@@ -9,13 +9,22 @@
     <language>en-us</language>
     <managingEditor>paul@truthandai.org (Paul Wever)</managingEditor>
     <webMaster>paul@truthandai.org (Paul Wever)</webMaster>
-    <lastBuildDate>Sat, 28 Feb 2026 01:34:54 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Mar 2026 14:06:00 +0000</lastBuildDate>
     <atom:link href="https://truthandai.org/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://truthandai.org/images/og-default.png</url>
       <title>Truth &amp; Artificial Intelligence</title>
       <link>https://truthandai.org/</link>
     </image>
+
+    <item>
+      <title>Convincing Does Not Mean True</title>
+      <link>https://truthandai.org/convincing-but-false.html</link>
+      <guid isPermaLink="true">https://truthandai.org/convincing-but-false.html</guid>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <description>An AI-generated exploration of how artificial intelligence can produce highly convincing information that is completely false, and why AI cannot reliably predict the future.</description>
+      <category>AI-Generated</category>
+    </item>
 
     <item>
       <title>Finding Truth in a Sea of Information</title>

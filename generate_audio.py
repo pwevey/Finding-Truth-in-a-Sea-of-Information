@@ -22,6 +22,7 @@ PAGES = {
     "docs/glossary.html":               "docs/audio/glossary.mp3",
     "docs/accuracy-is-not-truth.html":  "docs/audio/accuracy-is-not-truth.mp3",
     "docs/truth-more-important-than-ever.html": "docs/audio/truth-more-important.mp3",
+    "docs/convincing-but-false.html":             "docs/audio/convincing-but-false.mp3",
 }
 
 
